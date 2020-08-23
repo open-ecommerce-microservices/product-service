@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  product:
+    build:
+      context: .
+      target: builder
+    environment:
+      APP_DEBUG: "true"
+      APP_PORT: "8080"
+    command: make build run
+    volumes:
+      - .:/go/src/github.com/open-ecommerce-microservices/product-service
+    ports:
+      - 8080:8080
+    networks:
+      - dev
+networks:
+  dev:
+    name: dev_service_network
